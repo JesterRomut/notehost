@@ -103,6 +103,9 @@
       "@cloudflare/workers-types",
       "@types/node"
     ],
+    "paths": {
+      "@/src/*": ["./src/*"],
+    }
   },
   "include": [
     "**/*.ts"

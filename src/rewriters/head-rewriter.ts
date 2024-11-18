@@ -1,4 +1,5 @@
 import { NoteHostSiteConfigFull } from '../types'
+import {STRING as head} from '@/src/components/__head'
 
 /* eslint-disable class-methods-use-this */
 export class HeadRewriter {
@@ -25,20 +26,11 @@ export class HeadRewriter {
     }
 
     element.append(
-      `<style>
-        div.notion-topbar > div > div:nth-child(3) { display: none !important; }
-        div.notion-topbar > div > div:nth-child(4) { display: none !important; }
-        div.notion-topbar > div > div:nth-child(5) { display: none !important; }
-        div.notion-topbar > div > div:nth-child(6) { display: none !important; }
-        div.notion-topbar > div > div:nth-child(7) { display: none !important; }
-        div.notion-topbar > div > div:nth-child(1n).toggle-mode { display: block !important; }
-        
-        div.notion-topbar-mobile > div:nth-child(3) { display: none !important; }
-        div.notion-topbar-mobile > div:nth-child(4) { display: none !important; }
-        div.notion-topbar-mobile > div:nth-child(7) { display: none !important; }
-        div.notion-topbar-mobile > div:nth-child(1n).toggle-mode { display: block !important; }
+      `
+        ${head}
+
         ${customHeadCSS ?? ''}
-        </style>
+
         ${customHeadJS ?? ''}`,
       {
         html: true,

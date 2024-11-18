@@ -1,5 +1,5 @@
 import { NoteHostSiteConfigFull } from '../types'
-import { BODY_JS_STRING } from './_body-js-string'
+import { STRING as body } from '@/src/components/__body'
 /* eslint-disable class-methods-use-this */
 export class BodyRewriter {
   siteConfig: NoteHostSiteConfigFull
@@ -21,7 +21,7 @@ export class BodyRewriter {
       const slugs = ${JSON.stringify(slugs)};
       const pages = ${JSON.stringify(pages)};
       const notionDomain = '${this.siteConfig.notionDomain ? this.siteConfig.notionDomain : 'www.notion.so'}';
-      ${BODY_JS_STRING}
+      ${body}
       </script>
       ${customBodyJS ?? ''}
       `,
