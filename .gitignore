@@ -172,7 +172,7 @@ dist
 .vscode
 .git
 /src/cli/
-/src/js/*.ts
+/src/components/*.ts
 
 .env*
 .flaskenv*

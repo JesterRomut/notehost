@@ -9,7 +9,7 @@ export class BodyRewriter {
   }
 
   element(element: Element) {
-    const { domain, slugToPage, pageToSlug, slugs, pages, customBodyJS } = this.siteConfig
+    const { domain, notionDomain, slugToPage, pageToSlug, slugs, pages, customBodyJS } = this.siteConfig
 
     element.append(
       `
@@ -20,9 +20,9 @@ export class BodyRewriter {
       const PAGE_TO_SLUG = ${JSON.stringify(pageToSlug)};
       const slugs = ${JSON.stringify(slugs)};
       const pages = ${JSON.stringify(pages)};
-      const notionDomain = '${this.siteConfig.notionDomain ? this.siteConfig.notionDomain : 'www.notion.so'}';
-      ${body}
+      const notionDomain = '${notionDomain ? notionDomain : 'www.notion.so'}';
       </script>
+      ${body}
       ${customBodyJS ?? ''}
       `,
       {
