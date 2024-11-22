@@ -15,7 +15,7 @@ export class MetaRewriter {
   }
 
   element(element: Element) {
-    const { siteName, siteDescription, twitterHandle, siteImage, domain, pageToSlug, pageMetadata } = this.siteConfig
+    const { siteName, siteDescription, twitterHandle, siteImage, siteLanguage, domain, pageToSlug, pageMetadata } = this.siteConfig
     const page = this.url.pathname.slice(-32)
     const property = element.getAttribute('property') ?? ''
     const name = element.getAttribute('name') ?? ''
@@ -39,6 +39,10 @@ export class MetaRewriter {
 
     if (property === 'og:site_name') {
       element.setAttribute('content', siteName)
+    }
+
+    if (property === 'og:locale') {
+      element.setAttribute('content', siteLanguage)
     }
 
     if (name === 'article:author') {

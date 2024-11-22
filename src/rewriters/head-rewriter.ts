@@ -5,12 +5,17 @@ import {STRING as head} from '@/src/components/__head'
 export class HeadRewriter {
   siteConfig: NoteHostSiteConfigFull
 
-  constructor(siteConfig: NoteHostSiteConfigFull) {
+  url: URL
+
+  constructor(siteConfig: NoteHostSiteConfigFull, url: URL) {
     this.siteConfig = siteConfig
+    this.url = url
   }
 
   element(element: Element) {
-    const { googleFont, customHeadJS, customHeadCSS } = this.siteConfig
+    const { googleFont, customHeadJS, customHeadCSS, siteLanguage, pageMetadata } = this.siteConfig
+
+    const page = this.url.pathname.slice(-32)
 
     if (googleFont) {
       element.append(
@@ -23,6 +28,10 @@ export class HeadRewriter {
           html: true,
         },
       )
+    }
+
+    if (siteLanguage) {
+      element.setAttribute('lang', siteLanguage)
     }
 
     element.append(

@@ -18,6 +18,10 @@ export interface NoteHostSiteConfigFull {
   siteName: string
   // description, og:description, twitter:description
   siteDescription: string
+
+  // lang, og:locale
+  siteLanguage?: string
+
   // twitter:site, twitter:creator
   twitterHandle?: string
   // og:image, twitter:image
@@ -82,4 +86,6 @@ export interface NoteHostSiteConfigPageMetadata {
   image?: string
   // article:author
   author?: string
+  // keywords
+  //keyword?: string
 }
