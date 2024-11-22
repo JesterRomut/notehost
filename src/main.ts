@@ -41,11 +41,14 @@ export function main (){initializeReverseProxy(new function(){
     };
 
   const jester = "嘉登糖尿病";
+  const imageHost = 'https://jesterromut.github.io/grand-finale/favicon'
+
   // Metatags, optional
   // For main page link preview
   this.siteName = "华丽终幕 | 嘉登糖尿病的个人网站";
   this.siteDescription = "震惊！嘉登糖半夜三更在家有些孤独，打开电脑输入了JvavScript，几月不见，竟成为TypeScript大玉？！";
-  this.siteImage = "https://jesterromut.github.io/worms/%E5%90%9E%E6%98%9F%E4%B9%8B%E5%85%BD.png"
+  this.siteImage = `${imageHost}/worms/%E5%90%9E%E6%98%9F%E4%B9%8B%E5%85%BD.png`
+  this.siteIcon = `${imageHost}/grand-finale/favicon/favicon.ico`
 
   this.siteLanguage = 'zh-Hans'
 
@@ -105,6 +108,13 @@ export function main (){initializeReverseProxy(new function(){
   // googleFont: 'Roboto',
   // Custom JS for head and body of a Notion page
   // customHeadCSS: ``,
-  this.customHeadJS = googleTag("G-Y91TMDN1PB");
+
+  this.customHeadJS = `
+<link rel="apple-touch-icon" sizes="180x180" href="${imageHost}/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="${imageHost}/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="${imageHost}/favicon-16x16.png">
+<link rel="manifest" href="${imageHost}/site.webmanifest">
+`
+  this.customBodyJS = googleTag("G-Y91TMDN1PB");
   // customBodyJS: PAGE_SCRIPT_JS_STRING,
 })}

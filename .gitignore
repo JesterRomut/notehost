@@ -176,3 +176,4 @@ dist
 
 .env*
 .flaskenv*
+/package-lock.json
