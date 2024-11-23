@@ -14,12 +14,31 @@ export class MetaRewriter {
     this.isRootPage = this.siteConfig.pageToSlug[this.url.pathname.slice(1)] === ''
   }
 
+  getPage(){
+    return this.url.pathname.slice(-32);
+  }
+
+  getURL(element: Element) {
+    const { domain, pageToSlug } = this.siteConfig
+    const page = this.getPage()
+
+    if (this.isRootPage) {
+      return `https://${domain}/`
+    } else if (pageToSlug[page]) {
+      return `https://${domain}/${pageToSlug[page]}`
+    } else {
+      return `https://${domain}/${page}`
+    }
+  }
+
   element(element: Element) {
     const { siteName, siteDescription, twitterHandle, siteImage, siteLanguage, domain, pageToSlug, pageMetadata } = this.siteConfig
-    const page = this.url.pathname.slice(-32)
+    const page = this.getPage()
     const property = element.getAttribute('property') ?? ''
     const name = element.getAttribute('name') ?? ''
     const content = element.getAttribute('content') ?? ''
+
+    const rel = element.getAttribute('rel') ?? ''
 
     // console.log(
     //   `${this.url}: <${element.tagName} name="${name}" property="${property}">${content}</${element.tagName}>`,
@@ -62,13 +81,7 @@ export class MetaRewriter {
     }
 
     if (property === 'og:url' || name === 'twitter:url') {
-      if (this.isRootPage) {
-        element.setAttribute('content', `https://${domain}/`)
-      } else if (pageToSlug[page]) {
-        element.setAttribute('content', `https://${domain}/${pageToSlug[page]}`)
-      } else {
-        element.setAttribute('content', `https://${domain}/${page}`)
-      }
+      element.setAttribute('content', this.getURL(element))
     }
 
     if (name === 'twitter:site') {
@@ -93,6 +106,10 @@ export class MetaRewriter {
 
     if (name === 'apple-itunes-app') {
       element.remove()
+    }
+
+    if (rel === 'canonical') {
+      element.setAttribute('href', this.getURL(element))
     }
   }
 }

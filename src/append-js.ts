@@ -6,6 +6,7 @@ export async function appendJavascript(res: Response, url: URL, config: NoteHost
   return new HTMLRewriter()
     .on('title', new MetaRewriter(config, url))
     .on('meta', new MetaRewriter(config, url))
+    .on('link', new MetaRewriter(config, url))
     .on('head', new HeadRewriter(config, url))
     .on('body', new BodyRewriter(config))
     .transform(res)
